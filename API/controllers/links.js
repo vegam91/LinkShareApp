@@ -1,5 +1,6 @@
 const Link = require("../models/links");
 const { isValidUrl } = require("../middlewares/validURL");
+const User = require("../models/users");
 
 
 const getLinks = async (req, res) => {
@@ -15,7 +16,7 @@ try {
 const addLink = async (req, res) => {
   // console.log("Request Body:", req.body);
   const userId = req.user._id;
-  const {platform, link } = req.body;
+  const { platform, link } = req.body;
   console.log("Link:", link)
   if (!isValidUrl(link)) {
     return res.status(400).send("El enlace proporcionado no es válido");
@@ -23,14 +24,18 @@ const addLink = async (req, res) => {
 
   try {
     const newLink = new Link({
+      index,
       platform,
       link,
-      user: {
-        userId,
-      },
+      user: userId,
     });
-
     await newLink.save();
+
+     await User.findOneAndUpdate(
+      userId,
+      {$push:{links:newLink._id}},
+      {new:true}
+    );
     res.json(newLink);
   } catch (error) {
     console.error(error);

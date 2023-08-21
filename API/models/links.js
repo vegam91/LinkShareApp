@@ -6,7 +6,7 @@ const allowedPlatforms = [
 ];
 
 const linkSchema = new mongoose.Schema({
-  index: Number,
+  // index: Number,
   platform: {
     type: String,
     enum: allowedPlatforms,
