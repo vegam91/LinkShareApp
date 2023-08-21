@@ -1,12 +1,10 @@
-const url = require('url');
+const validator= require("validator");
 
 function isValidUrl(inputUrl) {
-  try {
-    new URL(inputUrl);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return validator.isURL(inputUrl, {
+    require_protocol: true, 
+    allow_underscores: true, 
+  });
 }
 
 module.exports = {

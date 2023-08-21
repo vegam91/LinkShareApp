@@ -21,14 +21,14 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
-    firstName: {
-    type: String,
+  //   firstName: {
+  //   type: String,
    
-  },
-  lastName: {
-    type: String,
+  // },
+  // lastName: {
+  //   type: String,
  
-  },
+  // },
 
   //   profilePhoto: {
   //     type: String,

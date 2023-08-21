@@ -8,7 +8,7 @@ const validate = require("../middlewares/validate");
 
 const isAuth = require("../middlewares/isAuth");
 
-const uploadValidation = [
+const updatedValidation = [
   body("firstName").notEmpty().withMessage("Can't be empty"),
 
   body("lastName").notEmpty().withMessage("Can't be empty"),
@@ -76,19 +76,21 @@ router.post(
 router.post(
   "/signin",
   userValidationSchemaByBody,
-  isAuth,
   validate,
   UserControllers.login
 );
 
 router.put(
   "/profile",
-  uploadValidation,
   isAuth,
+  updatedValidation,
+
   validate,
   UserControllers.updateProfile
 );
 
-router.get("/profile", isAuth, UserControllers.getProfile);
+router.get("/profile", 
+isAuth, 
+UserControllers.getProfile);
 
 module.exports = router;

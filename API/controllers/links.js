@@ -13,16 +13,16 @@ try {
   }
 };
 const addLink = async (req, res) => {
+  // console.log("Request Body:", req.body);
   const userId = req.user._id;
-  const { index, platform, link } = req.body;
-
+  const {platform, link } = req.body;
+  console.log("Link:", link)
   if (!isValidUrl(link)) {
     return res.status(400).send("El enlace proporcionado no es válido");
   }
 
   try {
     const newLink = new Link({
-      index,
       platform,
       link,
       user: {
