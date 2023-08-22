@@ -3,8 +3,8 @@ const express = require('express')
 
 const app = express()
 
-require ('./startup/db')()
-require('./startup/routes')(app)
+require ('../API/src/startup/db')()
+require('../API/src/startup/routes')(app)
 
 
 
