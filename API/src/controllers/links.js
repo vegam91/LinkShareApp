@@ -25,7 +25,7 @@ const addLink = async (req, res) => {
   try {
     const newLink = new Link({
       index,
-      platformlatform,
+      platform,
       link,
       user: userId,
     });
