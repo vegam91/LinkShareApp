@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-
+const {ObjectId} = mongoose.Schema.Types
 const jwt = require("jsonwebtoken");
 
-const linkId = require("./links");
+
 
 // const config = require('config')
 
@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
   //     type: String,
   //   },
 
-  "links": [{linkId}] 
+links: [{type: ObjectId, ref:"Link"}]
 });
 
 UserSchema.methods.generateJWT = function () {

@@ -1,9 +1,11 @@
 import React from "react";
+import { Container,Box } from "@mui/material";
 
 function LinkForm() {
   return (
-    <div>
-      <div>
+   <>
+   
+     <div>
         <h1>Customize your links</h1>
         <p>
           add/eddit/remove links below and then share all your profiles with the
@@ -22,7 +24,9 @@ function LinkForm() {
           <button>save</button>
         </div>
       </div>
-    </div>
+   </>
+    
+    
   );
 }
 

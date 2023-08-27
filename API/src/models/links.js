@@ -16,13 +16,13 @@ const linkSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  user: {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', 
-      required: true
-    }
-  }
+  // user: {
+  //   userId: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'User', 
+  //     required: true
+  //   }
+  // }
 });
 
 const Link = mongoose.model('Link', linkSchema);
@@ -30,4 +30,4 @@ const Link = mongoose.model('Link', linkSchema);
 module.exports = Link;
 
 
-module.exports = linkSchema;
+
