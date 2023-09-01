@@ -7,6 +7,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <GlobalStyles
+    
       styles={{
         html: {
           boxSizing: "border-box",

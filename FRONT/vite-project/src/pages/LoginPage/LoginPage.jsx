@@ -1,6 +1,9 @@
-import { Stack, Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import "@fontsource/roboto/300.css";
+import { Typography } from "@mui/material";
 
-function RegistroPage() {
+function LoginPage() {
   return (
     <Stack spacing={"40px"} backgroundColor="##FFFFFF">
       <Box>
@@ -12,7 +15,7 @@ function RegistroPage() {
           align="left"
           fontSize={"32px"}
         >
-          Create account
+          Login
         </Typography>
         <Typography
           variant="h2"
@@ -21,7 +24,7 @@ function RegistroPage() {
           fontFamily={"instrument Sans"}
           color="#737373"
         >
-          Let’s get you started sharing your links!
+          Add your details below to get back into the app
         </Typography>
       </Box>
 
@@ -35,29 +38,26 @@ function RegistroPage() {
       >
         <TextField
           id="outlined-basic"
-          label="ben@example.com |"
+          label="e.g. alex@email.com"
           variant="outlined"
-          // width="396px"
+        
         />
         <TextField
+        sx={{width:"369px"}}
           id="outlined-basic"
-          label="Create password"
-          placeholder="•••••••••••••••••"
-          variant="outlined"
-        />
-
-        <TextField
-          id="outlined-basic"
-          label="•••••••••••••••••"
+          label="Enter your password"
           variant="outlined"
         />
       </Box>
 
-      <Button variant="contained" sx={{ background: "#633CFF", borderRadius: 8 }}>
-        Create new account
+      <Button
+        variant="contained"
+        sx={{ background: "#633CFF", borderRadius: 8}}
+      >
+        Login
       </Button>
     </Stack>
   );
 }
 
-export default RegistroPage;
+export default LoginPage;
