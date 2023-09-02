@@ -7,7 +7,7 @@ function useLinks() {
 	const [errors, setErrors] = useState()
 
 	useEffect(() => {
-		costumerService
+		linksService
 			.getAll()
 			.then(({ data }) => setLinks(data))
 			.catch(setErrors)

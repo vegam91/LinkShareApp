@@ -35,7 +35,6 @@ function LoginPage() {
         }}
         noValidate
         autoComplete="off"
-        border="1px solid red"
       >
         <FormControl>
           <Typography fontFamily={"Instrument Sans"} sx={{ margin: "0" }}>
@@ -46,16 +45,19 @@ function LoginPage() {
             sx={{ width: "100%" }}
             id="outlined-basic"
             variant="outlined"
+            placeholder="e.g. alex@email.com"
+            label=""
           />
-
           <Typography fontFamily={"Instrument Sans"} sx={{ margin: "0" }}>
             Password
           </Typography>
+
           <TextField
             sx={{ width: "100%" }}
             id="outlined-basic"
             variant="outlined"
-            placeholder="asdasda"
+            placeholder="Enter your password"
+            label=""
           />
         </FormControl>
       </Box>

@@ -1,15 +1,15 @@
-import {
-  Stack,
-  Typography,
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import * as React from "react";
+import { Stack, Typography, Box, Button,TextField } from "@mui/material";
+import { getFormFields, validationSchema } from "./form-fields";
+import useLinks from "../../hooks/useLinks";
+import Form from "../../Form";
 
-function LinksPage() {
+
+function AddLinksPage() {
+  const { Links } = useLinks();
+
+  const onSubmit = (data) => {};
+
   return (
     <Stack spacing="40px">
       <Box>
@@ -34,12 +34,8 @@ function LinksPage() {
           world!
         </Typography>
       </Box>
-      <Box
-        spacing={"20px"}
-        border={"5px solid red"}
-        sx={{ backgroundColor: "#FAFAFA" }}
-      >
-        <Box border={"5px solid green"}>
+      <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
+        <Box>
           <Button
             variant="outlined"
             sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
@@ -48,20 +44,15 @@ function LinksPage() {
           </Button>
         </Box>
         <Typography fontFamily={"Instrument Sans"}>Platform</Typography>
-        <Box border={"5px solid black"}>
-          <FormControl fullWidth>
-            <Select
-            // labelId="demo-simple-select-label"
-            // id="demo-simple-select"
-            // value={age}
-            // label="Age"
-            // onChange={handleChange}
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
+        <Box>
+          <Form
+            fullWidth
+            heading="New Link"
+            buttonLabel="Add Link"
+            formFields={getFormFields(Links)}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          />
 
           <Typography fontFamily={"Instrument Sans"} sx={{ margin: "0" }}>
             Link
@@ -78,4 +69,4 @@ function LinksPage() {
   );
 }
 
-export default LinksPage;
+export default AddLinksPage;

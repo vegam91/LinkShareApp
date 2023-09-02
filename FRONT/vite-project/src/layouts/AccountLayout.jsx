@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Grid, Stack, Box, Button, Container } from "@mui/material";
+import { Link } from "@mui/material";
 function AccessLayout() {
   return (
     <Container
@@ -12,24 +13,16 @@ function AccessLayout() {
         padding: { xs: "0px", sm: "0px" },
       }}
     >
-      <Stack
-        alignItems={"center"}
-        // border={"10px solid blue"}
-        width={"100%"}
-        // height={"100vh"}
-
-        // paddingBottom={"237px"}
-        padding={"0px"}
-      >
+      <Stack alignItems={"center"} width={"100%"} padding={"0px"}>
         <Stack
           sx={{
-            padding: { sm: "24px" },
+            padding: "24px",
             justifyContent: { sm: "space-between" },
             // border: { sm: "10px solid black " },
-            width: { sm: "768px" },
-            height: { sm: "126px" },
+            width: { xl: "768px", sm: "680px" },
+            height: { xl: "126px", sm: "46px" },
             flexDirection: { sm: "row" },
-            alignItems:"center"
+            alignItems: "center",
           }}
         >
           <Box>
@@ -162,12 +155,14 @@ function AccessLayout() {
           height={"94px"}
           display={"flex"}
           alignItems={"center"}
-         position={"right"}
-       
+          position={"right"}
         >
-        <Button    variant="outlined" sx={{backgroundColor:"#633CFF", color:"white", }}>
-          Save
-        </Button>
+          <Button
+            variant="outlined"
+            sx={{ backgroundColor: "#633CFF", color: "white" }}
+          >
+            Save
+          </Button>
         </Box>
       </Stack>
     </Container>

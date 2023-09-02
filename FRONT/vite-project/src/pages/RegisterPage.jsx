@@ -35,21 +35,23 @@ function RegistroPage() {
       >
         <TextField
           id="outlined-basic"
-          label="ben@example.com |"
+          label=""
           variant="outlined"
+          placeholder="ben@example.com"
           // width="396px"
         />
         <TextField
           id="outlined-basic"
-          label="Create password"
+          label=""
           placeholder="•••••••••••••••••"
           variant="outlined"
         />
 
         <TextField
           id="outlined-basic"
-          label="•••••••••••••••••"
+          label=""
           variant="outlined"
+          placeholder="•••••••••••••••••"
         />
       </Box>
 

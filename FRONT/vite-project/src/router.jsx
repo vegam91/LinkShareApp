@@ -5,8 +5,9 @@ import LoginPage from "../src/pages/LoginPage/LoginPage";
 import ErrorPage from "./pages/ErrorPages";
 import PreviewPage from "../src/pages/PreviewPage.jsx";
 import AccountLayout from "../src/layouts/AccountLayout";
-import LinksPage from "./pages/LinksPage";
+import LinksPage from "./pages/LinksPage/LinksPage";
 import ProfilePage from "./pages/ProfilePage";
+import AddLinksPage from "./pages/LinksPage/AddLinksPage";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/links",
-        element: <LinksPage />,
+        element: <LinksPage/>,
+      
+      },
+      {
+        path: "/links/new",
+        element: <AddLinksPage />,
       },
       {
         path: "/profile",
