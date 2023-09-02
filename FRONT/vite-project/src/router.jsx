@@ -3,7 +3,7 @@ import AccessLayout from "../src/layouts/AccessLayout";
 import RegistroPage from "../src/pages/RegisterPage";
 import LoginPage from "../src/pages/LoginPage/LoginPage";
 import ErrorPage from "./pages/ErrorPages";
-import PreviewPage from "../src/pages/PreviewPage";
+import PreviewPage from "../src/pages/PreviewPage.jsx";
 import AccountLayout from "../src/layouts/AccountLayout";
 import LinksPage from "./pages/LinksPage";
 import ProfilePage from "./pages/ProfilePage";

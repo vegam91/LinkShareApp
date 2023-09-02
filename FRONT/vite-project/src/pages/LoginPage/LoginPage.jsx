@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, FormControl } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "@fontsource/roboto/300.css";
 import { Typography } from "@mui/material";
@@ -35,24 +35,34 @@ function LoginPage() {
         }}
         noValidate
         autoComplete="off"
+        border="1px solid red"
       >
-        <TextField
-          id="outlined-basic"
-          label="e.g. alex@email.com"
-          variant="outlined"
-        
-        />
-        <TextField
-        sx={{width:"369px"}}
-          id="outlined-basic"
-          label="Enter your password"
-          variant="outlined"
-        />
+        <FormControl>
+          <Typography fontFamily={"Instrument Sans"} sx={{ margin: "0" }}>
+            Email address
+          </Typography>
+          <TextField
+            fullWidth
+            sx={{ width: "100%" }}
+            id="outlined-basic"
+            variant="outlined"
+          />
+
+          <Typography fontFamily={"Instrument Sans"} sx={{ margin: "0" }}>
+            Password
+          </Typography>
+          <TextField
+            sx={{ width: "100%" }}
+            id="outlined-basic"
+            variant="outlined"
+            placeholder="asdasda"
+          />
+        </FormControl>
       </Box>
 
       <Button
         variant="contained"
-        sx={{ background: "#633CFF", borderRadius: 8}}
+        sx={{ background: "#633CFF", borderRadius: 8 }}
       >
         Login
       </Button>
