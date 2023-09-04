@@ -17,4 +17,4 @@ function useLinks() {
 	return { links, loading, errors, setLinks }
 }
 
-export default useLinks
+export default useLinks;

@@ -1,15 +1,15 @@
-import apiCLient from "./api-client"
+import apiClient from "./api-client"
 
 function create(endpoint) {
 	const httpService = {
-		getAll: () => apiCLient.get(endpoint),
+		getAll: () => apiClient.get(endpoint),
 
-		getById: (id) => apiCLient.get(endpoint + '/' + id),
+		getById: (id) => apiClient.get(endpoint + '/' + id),
 
-		create: (entity) => apiCLient.post(endpoint, entity),
-		update: (entity, id) => apiCLient.put(endpoint + '/' + id, entity),
+		create: (entity) => apiClient.post(endpoint, entity),
+		update: (entity, id) => apiClient.put(endpoint + '/' + id, entity),
 
-		delete: (id) => apiCLient.delete(endpoint + '/' + id),
+		delete: (id) => apiClient.delete(endpoint + '/' + id),
 	}
 
 	return httpService

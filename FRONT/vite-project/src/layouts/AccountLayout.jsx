@@ -82,12 +82,14 @@ function AccessLayout() {
             </svg>
           </Box>
           <Button
+           to="/links"
             variant="outlined"
             sx={{
               background: "#EFEBFF",
               borderRadius: 8,
               color: "#633CFF",
               border: "solid white",
+              
             }}
           >
             <svg

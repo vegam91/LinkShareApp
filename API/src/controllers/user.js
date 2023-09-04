@@ -1,10 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/users");
 
-
-
-
-
 const register = async (req, res) => {
   const { password: plainTextPassword, ...userDetails } = req.body;
   const salt = await bcrypt.genSalt(10);
@@ -17,9 +13,9 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { password: plainTextPassword, username } = req.body;
+  const { password: plainTextPassword, email } = req.body;
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ email });
   if (!user) return res.status(400).send("El usuario y contraseña no coincide");
 
   const isValidUser = await bcrypt.compare(plainTextPassword, user.password);
@@ -28,6 +24,7 @@ const login = async (req, res) => {
     return res.status(400).send("El usuario o contraseña no coincide");
 
   const token = user.generateJWT();
+  res.setHeader("Access-Control-Expose-Headers", "x-auth-token");
 
   res.setHeader("x-auth-token", token);
   res.send("Usuario logueado");

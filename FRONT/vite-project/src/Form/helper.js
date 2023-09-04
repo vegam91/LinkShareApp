@@ -1,23 +1,23 @@
-// import _ from 'lodash'
+import _ from 'lodash'
 
-// const transformData = (form) => {
-// 	const formData = new FormData()
+const transformData = (form) => {
+	const formData = new FormData()
 
-// 	for (let field in form) {
-// 		if (form[field] instanceof File) {
-// 			formData.append(field, form[field], form[field].name)
-// 		} else if (form[field] instanceof Date) {
-// 			formData.append(field, form[field].toISOString())
-// 		} else if (_.isArray(form[field])) {
-// 			form[field].forEach((i) => formData.append(`${field}[]`, i.value))
-// 		} else if (_.isObject(form[field])) {
-// 			formData.append(field, form[field].value)
-// 		} else {
-// 			if (form[field]) formData.append(field, form[field])
-// 		}
-// 	}
+	for (let field in form) {
+		if (form[field] instanceof File) {
+			formData.append(field, form[field], form[field].name)
+		} else if (form[field] instanceof Date) {
+			formData.append(field, form[field].toISOString())
+		} else if (_.isArray(form[field])) {
+			form[field].forEach((i) => formData.append(`${field}[]`, i.value))
+		} else if (_.isObject(form[field])) {
+			formData.append(field, form[field].value)
+		} else {
+			if (form[field]) formData.append(field, form[field])
+		}
+	}
 
-// 	return formData
-// }
+	return formData
+}
 
-// export { transformData }
+export { transformData }

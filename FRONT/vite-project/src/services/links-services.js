@@ -1,5 +1,5 @@
 import create from "./http-services"
 
-const linksService= create('/links')
+const linksService = create('/links')
 
-export default linksService
+export default linksService;

@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-const {ObjectId} = mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types;
 const jwt = require("jsonwebtoken");
-
-
 
 // const config = require('config')
 
@@ -23,25 +21,25 @@ const UserSchema = new mongoose.Schema({
   },
   //   firstName: {
   //   type: String,
-   
+
   // },
   // lastName: {
   //   type: String,
- 
+
   // },
 
   //   profilePhoto: {
   //     type: String,
   //   },
 
-links: [{type: ObjectId, ref:"Link"}]
+  links: [{ type: ObjectId, ref: "Link" }],
 });
 
 UserSchema.methods.generateJWT = function () {
   return jwt.sign(
     {
       _id: this._id,
-      username: this.username,
+      email: this.email,
       isAdmin: this.isAdmin,
     },
     process.env.jwtPrivateKey

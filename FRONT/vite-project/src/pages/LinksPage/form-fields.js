@@ -1,28 +1,79 @@
 import * as yup from "yup";
 
-const getFormFields = (options) => [
-
+const allowedPlatforms = [
   {
-    name: "Platform",
-    label: "Platform",
-    type: "select",
-
-    options: options.map((option) => ({
-      label: option.name,
-      value: option._id,
-    })),
-    multiple: false,
-
+    label: "Github",
+    value: "Github",
   },
-//   {
-//     name: "logo",
-//     label: "Logo",
-//     type: "file",
-//   },
+  {
+    label: "Facebook",
+    value: "Facebook",
+  },
+  {
+    label: "Twitter",
+    value: "Twitter",
+  },
+  {
+    label: "Twitch",
+    value: "Twitch",
+  },
+  {
+    label: "Dev.to",
+    value: "Dev.to",
+  },
+  {
+    label: "CodeWars",
+    value: "CodeWars",
+  },
+  {
+    label: "FreeCodeCamp",
+    value: "FreeCodeCamp",
+  },
+  {
+    label: "LinkedIn",
+    value: "LinkedIn",
+  },
+  {
+    label: "Youtube",
+    value: "Youtube",
+  },
+  {
+    label: "Gitlab",
+    value: "Gitlab",
+  },
+  {
+    label: "Hashnode",
+    value: "Hashnode",
+  },
+  {
+    label: "Hashnode",
+    value: "Hashnode",
+  },
 ];
 
+const getFormFields = (links) => {
+  let fields = [];
+
+  const platformField = {
+    name: "platform-0",
+    label: "Platform",
+    type: "select",
+    options: allowedPlatforms,
+  };
+  fields.push(platformField);
+
+  const linkField = {
+    name: "link-0",
+    label: "Link",
+    type: "text",
+  };
+  fields.push(linkField);
+
+  return fields;
+};
+
 const validationSchema = yup.object().shape({
-  // date: yup.date().required("El campo es requerido"),
+  
 });
 
 export { getFormFields, validationSchema };

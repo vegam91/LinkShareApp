@@ -16,7 +16,7 @@ const validateLinks=[
     })
 ]
 
-router.get("/links", isAuth, LinkController.getLinks);
+router.get("/", isAuth, LinkController.getLinks);
 router.post("", isAuth,LinkController.addLink);
 router.put("/:linkId", isAuth,validateLinks, LinkController.updateLink);
 router.delete("/:linkId", isAuth, LinkController.deleteLink);
