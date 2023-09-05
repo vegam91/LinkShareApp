@@ -42,10 +42,7 @@ const register = async (user) => {
 	return token
 }
 
-const logout = () => {
-	localStorage.removeItem(tokenKey)
-	setToken(null)
-}
+
 
 const getCurrentUser = () => {
 	const token = localStorage.getItem(tokenKey)
@@ -64,7 +61,7 @@ function getToken() {
 const authService = {
 	login,
 	register,
-	logout,
+	
 	getCurrentUser,
 	loginWithToken,
 }

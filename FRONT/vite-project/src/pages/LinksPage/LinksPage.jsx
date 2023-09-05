@@ -1,28 +1,34 @@
-import {
-  Stack,
-  Typography,
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Stack, Typography, Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import _ from "lodash";
+import linksService from "../../services/links-services";
+import AddlinkForm from "./AddLinkPage";
+import React, { useState } from "react";
+
 function AddLinksPage() {
+  const [showAddLinkForm, setShowAddLinkForm] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowAddLinkForm(true);
+  };
+
   return (
     <Stack spacing="40px">
       <Box>
-        <Typography
-          variant="h1"
-          gutterBottom
-          fontWeight={"700"}
-          fontFamily={"Instrument Sans"}
-          align="left"
-          fontSize={"32px"}
-        >
-          Customize your links
-        </Typography>
+        <>
+          <Typography
+            variant="h1"
+            gutterBottom
+            fontWeight={"700"}
+            fontFamily={"Instrument Sans"}
+            align="left"
+            fontSize={"32px"}
+          >
+            Customize your links
+          </Typography>
+          <p>sdfas</p>
+        </>
+
         <Typography
           variant="h2"
           gutterBottom
@@ -38,13 +44,15 @@ function AddLinksPage() {
       <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
         <Button
           variant="outlined"
-          component={Link}
-          to="/links/new"
+          onClick={handleButtonClick}
           sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
         >
           ADD NEW LINK
         </Button>
+        {showAddLinkForm && <AddlinkForm />} 
       </Box>
+
+      {/* desde AQUI añadir si NO hay links */}
       <Box
         display={"flex"}
         flexDirection={"column"}
@@ -273,6 +281,7 @@ function AddLinksPage() {
           </Box>
         </Box>
       </Box>
+      {/* -----------hastaaqui */}
     </Stack>
   );
 }

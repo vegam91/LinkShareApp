@@ -9,7 +9,7 @@ import authService from "../../services/auth-service";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [, dispatch] = useAuth();
 
   const onSubmit = (data) => {

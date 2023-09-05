@@ -14,7 +14,7 @@ function AddLinksPage() {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await linksService.getAllLinks();
+        const response = await linksService.getAll();
         setLinks(response);
       } catch (error) {
         console.error("Error fetching links:", error);

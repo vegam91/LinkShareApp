@@ -8,6 +8,7 @@ const register = async (req, res) => {
   const user = await User.create({ ...userDetails, password });
 
   const token = user.generateJWT();
+  res.setHeader('Access-Control-Expose-Headers', 'x-auth-token')
   res.setHeader("x-auth-token", token);
   res.send("Usuario registrado");
 };
