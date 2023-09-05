@@ -2,11 +2,10 @@ const Link = require("../models/links");
 const { isValidUrl } = require("../middlewares/validURL");
 const User = require("../models/users");
 
-
 const getLinks = async (req, res) => {
   const userId = req.user._id;
-try {
-    const links = await Link.find({ "user.userId": userId });
+  try {
+    const { links } = await User.findById(userId).populate("links");
     res.json(links);
   } catch (error) {
     console.error(error);
@@ -16,20 +15,19 @@ try {
 const addLink = async (req, res) => {
   // console.log("Request Body:", req.body);
   const userId = req.user._id;
-  const { platform, link} = req.body;
+  const { platform, link } = req.body;
   // console.log("Link:", link)
   if (!isValidUrl(link)) {
     return res.status(400).send("El enlace proporcionado no es válido");
   }
 
   try {
-    const newLink = await Link.create({platform, link });
+    const newLink = await Link.create({ platform, link });
 
-
-     await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       userId,
-      {$push:{links:newLink._id}},
-      {new:true}
+      { $push: { links: newLink._id } },
+      { new: true }
     );
     res.json(newLink);
   } catch (error) {
@@ -41,7 +39,7 @@ const addLink = async (req, res) => {
 const updateLink = async (req, res) => {
   const userId = req.user._id;
   const linkId = req.params.linkId;
-  const {platform, link } = req.body;
+  const { platform, link } = req.body;
 
   if (!isValidUrl(link)) {
     return res.status(400).send("El enlace proporcionado no es válido");

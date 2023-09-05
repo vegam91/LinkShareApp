@@ -1,53 +1,67 @@
 import { Stack, Box, Typography, Button } from "@mui/material";
-import Form from "../../Form";
-import { getFormFields, validationSchema } from "./form-fields";
+
+import { validationSchema } from "./form-fields";
 import { useState, useEffect } from "react";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import useLinks from "../../hooks/useLinks";
+import _ from "lodash";
 
 function AddlinkForm() {
-  const [newLink, setNewLink] = useState({});
 
-  const { links, setLinks } = useLinks();
-  const handleNewLink = () => {
-    if (!_.isEmpty(newLink)) return;
+    const { links, setLinks } = useLinks();
 
-    setNewLink({
-      id: "new",
-      platform: "",
-      link: "",
+    const {
+      handleSubmit,
+      control,
+      formState: { errors },
+    } = useForm({
+      resolver: yupResolver(validationSchema),
     });
-  };
+  
+    const { fields, append, prepend, remove } = useFieldArray({
+      control,
+      name: "links",
+    });
+
 
   const onSubmit = (data) => {
-    const transformData = [];
-
-    for (const prop in data) {
-      const id = prop.split("-")[2];
-      const index = prop.split("-")[1];
-      const field = prop.split("-")[0];
-
-      transformData[index] = {
-        ...transformData[index],
-        [field]: data[prop],
-        id,
-      };
-    }
-
-    console.log("VAMOS", transformData)}
-
+    console.log(data);
+ 
+  };
 
   return (
-    <Stack spacing="40px">
+    <Stack marginTop={"30px"} spacing="40px">
       <Box>
-        <Form
-          heading="New Link"
-          buttonLabel="Add Link"
-          formFields={getFormFields(links)}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}
-        />
+        <form
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          autoComplete="off"
+          noValidate
+        >
+          <Stack
+            spacing={"24px"}
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+          ></Stack>
+          <Box>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                background: "#633CFF",
+                borderRadius: "8px",
+                mt: "24px",
+                width: "100%",
+              }}
+            >
+              Save
+            </Button>
+          </Box>
+        </form>
       </Box>
-      {/* </Box> */}
     </Stack>
   );
 }

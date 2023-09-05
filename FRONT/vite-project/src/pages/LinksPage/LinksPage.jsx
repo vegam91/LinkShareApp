@@ -1,15 +1,50 @@
 import { Stack, Typography, Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+
+import { validationSchema, allowedPlatforms } from "./form-fields";
+import { useEffect } from "react";
+
+import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import fieldLib from "../../Form/fields";
+import useLinks from "../../hooks/useLinks";
 import _ from "lodash";
-import linksService from "../../services/links-services";
-import AddlinkForm from "./AddLinkPage";
-import React, { useState } from "react";
+
+// No uso form reutilizable pero si los campos
+const { input: InputField, select: SelectField } = fieldLib;
 
 function AddLinksPage() {
-  const [showAddLinkForm, setShowAddLinkForm] = useState(false);
+  // Traigo el array de links del usuario ({platform, link})
+  const { links, setLinks } = useLinks();
 
-  const handleButtonClick = () => {
-    setShowAddLinkForm(true);
+  // Engancho useForm para el estado del formulario
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  // Engancho useFieldArray para extender el comportamiento de useForm para que gestione el estado de un array dinámico de campos
+  const { fields, append, update } = useFieldArray({
+    control,
+    name: "links",
+  });
+
+  // Confirguro un useEffect para que en el re-render que hace cuando recibe los links de la api, actualice con el metodo `update` que saca de useFieldArray, los campos que debe mostrar con los valores correspondientes.
+  useEffect(() => {
+    links.forEach((value, index) => {
+      update(index, {
+        platform: value.platform,
+        link: value.link,
+      });
+    });
+  }, [links, update]);
+
+  // AL HACER SUBMIT RECIBE LA DATA NUEVA CUMPLIMENTADA
+  const onSubmit = (data) => {
+    console.log("DASDSADDSA", data);
+    // AQUI LA LOGICA QUE ACTUALZIA LOS CAMBIOS RECIBIDOS EN LA BASE DE DATOS
   };
 
   return (
@@ -26,7 +61,6 @@ function AddLinksPage() {
           >
             Customize your links
           </Typography>
-          <p>sdfas</p>
         </>
 
         <Typography
@@ -44,15 +78,75 @@ function AddLinksPage() {
       <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
         <Button
           variant="outlined"
-          onClick={handleButtonClick}
+          onClick={() => {
+            append({ platform: "", link: "" });
+          }}
           sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
         >
           ADD NEW LINK
         </Button>
-        {showAddLinkForm && <AddlinkForm />} 
+
+        <Stack marginTop={"30px"} spacing="40px">
+          <Box>
+            <form
+              component="form"
+              onSubmit={handleSubmit(onSubmit)}
+              autoComplete="off"
+              noValidate
+            >
+              <Stack
+                spacing={"24px"}
+                sx={{
+                  "& > :not(style)": { m: 1 },
+                }}
+              >
+                {fields.map((item, index) => (
+                  <div key={item.id}>
+                    <Controller
+                      render={({ field: { ref, ...field } }) => (
+                        <SelectField
+                          placeholder="Elije una plataforma"
+                          {...field}
+                          options={allowedPlatforms}
+                          errors={errors.links?.[index]?.platform}
+                        />
+                      )}
+                      name={`links.${index}.platform`}
+                      control={control}
+                    />
+                    <Controller
+                      render={({ field: { ref, ...field } }) => (
+                        <InputField
+                          {...field}
+                          errors={errors.links?.[index]?.link}
+                        />
+                      )}
+                      name={`links.${index}.link`}
+                      control={control}
+                    />
+                  </div>
+                ))}
+              </Stack>
+              <Box>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    background: "#633CFF",
+                    borderRadius: "8px",
+                    mt: "24px",
+                    width: "100%",
+                  }}
+                >
+                  Save
+                </Button>
+              </Box>
+            </form>
+          </Box>
+        </Stack>
       </Box>
 
-      {/* desde AQUI añadir si NO hay links */}
+      {/* {links.length ? <AddLinksPage/> : */}
       <Box
         display={"flex"}
         flexDirection={"column"}
@@ -281,6 +375,7 @@ function AddLinksPage() {
           </Box>
         </Box>
       </Box>
+      {/* } */}
       {/* -----------hastaaqui */}
     </Stack>
   );

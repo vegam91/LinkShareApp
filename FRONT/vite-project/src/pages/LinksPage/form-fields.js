@@ -51,29 +51,22 @@ const allowedPlatforms = [
   },
 ];
 
-const getFormFields = (links) => {
-  let fields = [];
-
-  const platformField = {
-    name: "platform-0",
-    label: "Platform",
-    type: "select",
-    options: allowedPlatforms,
-  };
-  fields.push(platformField);
-
-  const linkField = {
-    name: "link-0",
-    label: "Link",
-    type: "text",
-  };
-  fields.push(linkField);
-
-  return fields;
-};
-
 const validationSchema = yup.object().shape({
-  
+  links: yup.array().of(
+    yup.object().shape({
+      platform: yup
+        .string()
+        .required("La plataforma es obligatoria")
+        .oneOf(
+          allowedPlatforms.map((platform) => platform.value),
+          "Plataforma no válida"
+        ),
+      link: yup
+        .string()
+        .required("El enlace es obligatorio")
+        .url("Debe ser una URL válida"),
+    })
+  ),
 });
 
-export { getFormFields, validationSchema };
+export { allowedPlatforms, validationSchema };

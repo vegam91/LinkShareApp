@@ -7,7 +7,7 @@ import PreviewPage from "../src/pages/PreviewPage.jsx";
 import AccountLayout from "../src/layouts/AccountLayout";
 import LinksPage from "./pages/LinksPage/LinksPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import AddLinksPage from "./pages/LinksPage/ESTANOAddLinksPage";
+// import AddLinksPage from "./pages/LinksPage/ESTANOAddLinksPage";
 import EjemploRender from "./pages/EJEMPLORENDER";
 
 const router = createBrowserRouter([
@@ -36,10 +36,10 @@ const router = createBrowserRouter([
         path: "/links",
         element: <LinksPage />,
       },
-      {
-        path: "/links/new",
-        element: <AddLinksPage />,
-      },
+      // {
+      //   path: "/links/new",
+      //   element: <AddLinksPage />,
+      // },
       {
         path: "/profile",
         element: <ProfilePage />,

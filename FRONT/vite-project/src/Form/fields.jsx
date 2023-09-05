@@ -57,6 +57,8 @@ const SelectField = ({
       <Select
         labelId="demo-multiple-name-label"
         id="demo-multiple-name"
+        error={!!errors}
+        helperText={errors?.message}
         value={value}
         displayEmpty
         name={name}
@@ -95,8 +97,7 @@ const FileField = ({
   clearErrors,
   ...rest
 }) => {
-  const [preview, setPreview] = useState(
-  )
+  const [preview, setPreview] = useState();
 
   return (
     <Stack>
