@@ -6,9 +6,7 @@ module.exports = function (req, res, next) {
   if (!token) return res.status(401).send("No hay token");
 
   try {
-    
-      const decoded = jwt.verify(token, process.env.jwtPrivateKey);
-      req.user = decoded
+    const decoded = jwt.verify(token, process.env.jwtPrivateKey);
     req.user = decoded;
 
     next();

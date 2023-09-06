@@ -1,6 +1,7 @@
 const Link = require("../models/links");
 const { isValidUrl } = require("../middlewares/validURL");
 const User = require("../models/users");
+const { link } = require("../routes/links");
 
 const getLinks = async (req, res) => {
   const userId = req.user._id;
@@ -48,14 +49,12 @@ const updateLink = async (req, res) => {
   try {
     const linkToUpdate = await Link.findOne({
       _id: linkId,
-      "user.userId": userId,
     });
 
     if (!linkToUpdate) {
       return res.status(404).send("Enlace no encontrado");
     }
 
-    linkToUpdate.index = index;
     linkToUpdate.platform = platform;
     linkToUpdate.link = link;
 
@@ -74,8 +73,13 @@ const deleteLink = async (req, res) => {
   try {
     const linkToDelete = await Link.findOneAndDelete({
       _id: linkId,
-      "user.userId": userId,
     });
+
+    await User.findByIdAndUpdate(
+      userId,
+      { $pull: { links: linkId } },
+      { new: true }
+    );
 
     if (!linkToDelete) {
       return res.status(404).send("Enlace no encontrado");

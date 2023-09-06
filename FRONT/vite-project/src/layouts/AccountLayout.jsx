@@ -159,12 +159,7 @@ function AccessLayout() {
           alignItems={"center"}
           position={"right"}
         >
-          <Button
-            variant="outlined"
-            sx={{ backgroundColor: "#633CFF", color: "white" }}
-          >
-            Save
-          </Button>
+     
         </Box>
       </Stack>
     </Container>
