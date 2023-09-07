@@ -13,17 +13,17 @@ function ProfilePage() {
 
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const updatedUser = await userService.update(data);
+  // const onSubmit = async (data) => {
+  //   try {
+  //     const updatedUser = await userService.update(data);
 
-      setUser(updatedUser);
+  //     setUser(updatedUser);
 
-      console.log("Perfil actualizado:", updatedUser);
-    } catch (error) {
-      console.error("Error al actualizar el perfil:", error);
-    }
-  };
+  //     console.log("Perfil actualizado:", updatedUser);
+  //   } catch (error) {
+  //     console.error("Error al actualizar el perfil:", error);
+  //   }
+  // };
 
   return (
     <Stack spacing="40px">
