@@ -22,15 +22,6 @@ function NoLinksPage() {
     sx={{ width: "601px", height: "344px" }}
     alignItems={"center"}
   >
-     <Button
-              variant="outlined"
-              onClick={() => {
-                append({ platform: "", link: "" });
-              }}
-              sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
-            >
-              ADD NEW LINK
-            </Button>
     <Box>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -255,4 +246,4 @@ function NoLinksPage() {
   );
 }
 
-export default NoLinksPage;
+export default AddlinkForm;

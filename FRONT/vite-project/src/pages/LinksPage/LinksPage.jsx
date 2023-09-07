@@ -125,10 +125,8 @@ function AddLinksPage() {
       </Box>
 
       <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
-        {loading ? (
-          <CircularProgress />
-        ) : !_.isEmpty(links) ? (
-          <>
+        
+          
             <Button
               variant="outlined"
               onClick={() => {
@@ -138,7 +136,9 @@ function AddLinksPage() {
             >
               ADD NEW LINK
             </Button>
-
+            {loading ? (
+          <CircularProgress />
+        ) : !_.isEmpty(links) ? (
             <Stack marginTop={"50px"} spacing="40px">
               <Box>
                 <form
@@ -205,7 +205,7 @@ function AddLinksPage() {
                 </form>
               </Box>
             </Stack>
-          </>
+          
         ) : (
           <NoLinksPage />
         )}
