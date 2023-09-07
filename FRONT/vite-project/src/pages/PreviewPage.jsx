@@ -4,12 +4,11 @@ function Preview() {
   return (
     <Container
       sx={{
-        // border: "10px solid  red",
+        border: "10px solid  red",
         direction: "column",
         display: "flex",
         height: "100vh",
-        alignItems: "center",
-        justifyContent: "center",
+    
         padding: { xs: "0px", sm: "0px" },
       }}
     >
@@ -23,20 +22,23 @@ function Preview() {
         padding={"0px"}
       >
         <Box
+        // justifyContent={"center"}
           border="10px solid green"
           borderRadius={{ sm: "0px 0px 32px 32px" }}
           width={"100%"}
           bgcolor={{ sm: "#633CFF" }}
           padding={{ xs: "16px", sm: "24px" }}
           height={{ sm: "357px" }}
-          justifyItems={"center"}
+alignItems={"center"}          // justifyItems={"center"}
         >
           <Stack
             sx={{
+              alignItems:"center",
               justifyContent: "space-between",
               border: "10px solid red ",
               width: "768px",
               flexDirection: "row",
+              backgroundColor:"white"
             }}
           >
             <Button
@@ -72,15 +74,17 @@ function Preview() {
           <Avatar sx={{ width: "104px", height: "104px" }}>sdfsdfsf</Avatar>
         </Box>
         <Box
-          spacing={"20px"}
+        
+         flexDirection= "column"
+          spacing={"40px"}
           display={"flex"}
           position={"center"}
           sx={{
             // spacing:"20px",
             width: "349px",
-            flexDirection: "column",
+            
             position: "column",
-            border: "5px solid red",
+             border: "10px solid  red"
           }}
         >
           <Button

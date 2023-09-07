@@ -1,10 +1,10 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography, Button } from "@mui/material";
 import Form from "../../Form";
 import { getFormFields, validationSchema } from "./form-fields";
 import { useAuth } from "../../hooks/auth";
 import authService from "../../services/auth-service";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function RegistroPage() {
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function RegistroPage() {
       };
       dispatch(action);
 
-      navigate(-1, { replace: true });
+      navigate("/links", { replace: true });
     } catch (error) {
       console.error("Error al registrar usuario:", error);
     }
@@ -37,7 +37,17 @@ function RegistroPage() {
         formFields={getFormFields()}
         validationSchema={validationSchema}
       />
+
+<Typography>
+       already have an account?
+        <Link to="/"> 
+          <Button  variant="text">Login</Button>
+        </Link>
+      </Typography>
+     
     </Stack>
+
+   
   );
 }
 

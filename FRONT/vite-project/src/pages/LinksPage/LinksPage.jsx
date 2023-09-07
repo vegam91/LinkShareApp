@@ -15,7 +15,7 @@ import fieldLib from "../../Form/fields";
 import useLinks from "../../hooks/useLinks";
 import { useState } from "react";
 import _ from "lodash";
-import userService from "../../services/user-service,js";
+
 import linksService from "../../services/links-services";
 import { useParams } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const { input: InputField, select: SelectField } = fieldLib;
 function AddLinksPage() {
   // Traigo el array de links del usuario ({platform, link})
   const { links, loading, setLinks } = useLinks();
-  const { id } = useParams();
+
   // Engancho useForm para el estado del formulario
   const {
     handleSubmit,
@@ -101,6 +101,29 @@ function AddLinksPage() {
 
   return (
     <Stack spacing="40px">
+      <Box>
+        <Typography
+          variant="h1"
+          fontFamily={"Instrument Sans"}
+          color={"#333"}
+          fontSize={"32px"}
+          fontWeight={"700"}
+          lineheight={"150%"}
+        >
+          Customize your links
+        </Typography>
+        <Typography
+          fontFamily={"Instrument Sans<"}
+          fontSize={"16px"}
+          color={"#737373"}
+        >
+          <p>
+            Add/edit/remove links below and then share all your profiles with
+            the world!
+          </p>
+        </Typography>
+      </Box>
+
       <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
         {loading ? (
           <CircularProgress />
@@ -116,7 +139,7 @@ function AddLinksPage() {
               ADD NEW LINK
             </Button>
 
-            <Stack marginTop={"30px"} spacing="40px">
+            <Stack marginTop={"50px"} spacing="40px">
               <Box>
                 <form
                   component="form"
@@ -154,7 +177,13 @@ function AddLinksPage() {
                           name={`links.${index}.link`}
                           control={control}
                         />
-                        <Button onClick={() => remove(index)}>delete</Button>
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "#633CFF", marginLeft: "10px" }}
+                          onClick={() => remove(index)}
+                        >
+                          delete
+                        </Button>
                       </div>
                     ))}
                   </Stack>

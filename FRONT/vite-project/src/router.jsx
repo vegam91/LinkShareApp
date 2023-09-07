@@ -8,7 +8,7 @@ import AccountLayout from "../src/layouts/AccountLayout";
 import LinksPage from "./pages/LinksPage/LinksPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 // import AddLinksPage from "./pages/LinksPage/ESTANOAddLinksPage";
-import EjemploRender from "./pages/EJEMPLORENDER";
+
 
 const router = createBrowserRouter([
   {
@@ -28,10 +28,7 @@ const router = createBrowserRouter([
   {
     element: <AccountLayout />,
     children: [
-      {
-        path: "/ejemplo",
-        element: <EjemploRender />,
-      },
+     
       {
         path: "/links",
         element: <LinksPage />,

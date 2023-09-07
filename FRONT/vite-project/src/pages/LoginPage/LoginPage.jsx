@@ -1,12 +1,14 @@
-import { Box, Button, Stack, FormControl } from "@mui/material";
+import { Box, Button, Stack, FormControl, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "@fontsource/roboto/300.css";
-
+import { Link } from 'react-router-dom'
 import Form from "../../Form";
+import RegistroPage from "../registroPage/RegistroPage";
 import { getFormFields, validationSchema } from "./form-fields";
 import { useAuth } from "../../hooks/auth";
 import authService from "../../services/auth-service";
 import { useNavigate } from "react-router-dom";
+
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ function LoginPage() {
   };
 
   return (
-    <Stack backgroundColor="##FFFFFF">
+    <Stack spacing={"40px"}backgroundColor="##FFFFFF">
       <Form
         heading="Login"
         subheading="Add your details below to get back into the app"
@@ -38,13 +40,13 @@ function LoginPage() {
         formFields={getFormFields()}
         validationSchema={validationSchema}
       />
-
-      {/* <Button
-        variant="contained"
-        sx={{ background: "#633CFF", borderRadius: 8 }}
-      >
-        Login
-      </Button> */}
+ <Typography>
+        Don't have an account? 
+        <Link to="/registro"> 
+          <Button variant="text">Create One</Button>
+        </Link>
+      </Typography>
+     
     </Stack>
   );
 }
