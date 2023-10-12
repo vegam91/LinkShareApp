@@ -18,7 +18,6 @@ import _ from "lodash";
 
 import linksService from "../../services/links-services";
 
-
 // No uso form reutilizable pero si los campos
 const { input: InputField, select: SelectField } = fieldLib;
 
@@ -111,95 +110,90 @@ function LinksPage() {
           fontSize={"16px"}
           color={"#737373"}
         >
-          <p>
-            Add/edit/remove links below and then share all your profiles with
-            the world!
-          </p>
+          Add/edit/remove links below and then share all your profiles with the
+          world!
         </Typography>
       </Box>
 
       <Box spacing={"20px"} sx={{ backgroundColor: "#FAFAFA" }}>
-        
-          
-            <Button
-              variant="outlined"
-              onClick={() => {
-                append({ platform: "", link: "" });
-              }}
-              sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
-            >
-              ADD NEW LINK
-            </Button>
-            {loading ? (
+        <Button
+          variant="outlined"
+          onClick={() => {
+            append({ platform: "", link: "" });
+          }}
+          sx={{ border: "solid #633CFF", color: "#633CFF", width: "100%" }}
+        >
+          ADD NEW LINK
+        </Button>
+        {loading ? (
           <CircularProgress />
-        ) : !_.isEmpty(links) ? (
-            <Stack marginTop={"50px"} spacing="40px">
-              <Box>
-                <form
-                  component="form"
-                  onSubmit={handleSubmit(onSubmit)}
-                  autoComplete="off"
-                  noValidate
+        ) : !_.isEmpty(fields) || !_.isEmpty(links) ? (
+          <Stack marginTop={"50px"} spacing="40px">
+            <Box>
+              <form
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete="off"
+                noValidate
+              >
+                <Stack
+                  spacing={"24px"}
+                  sx={{
+                    "& > :not(style)": { m: 1 },
+                  }}
                 >
-                  <Stack
-                    spacing={"24px"}
+                  {fields.map((item, index) => (
+                    <div key={item.id}>
+                      <Controller
+                        render={({ field: { ref, ...field } }) => (
+                          <SelectField
+                            placeholder="Elije una plataforma"
+                            {...field}
+                            options={allowedPlatforms}
+                            errors={errors.links?.[index]?.platform}
+                          />
+                        )}
+                        name={`links.${index}.platform`}
+                        control={control}
+                      />
+                      <Controller
+                        render={({ field: { ref, ...field } }) => (
+                          <InputField
+                            {...field}
+                            errors={errors.links?.[index]?.link}
+                          />
+                        )}
+                        name={`links.${index}.link`}
+                        control={control}
+                      />
+                      <Button
+                        variant="outlined"
+                        sx={{ color: "#633CFF", marginLeft: "10px" }}
+                        onClick={() => remove(index)}
+                      >
+                        delete
+                      </Button>
+                    </div>
+                  ))}
+                </Stack>
+                <Box>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    onSubmit={onSubmit}
                     sx={{
-                      "& > :not(style)": { m: 1 },
+                      background: "#633CFF",
+                      borderRadius: "8px",
+                      mt: "24px",
+                      width: "100%",
                     }}
                   >
-                    {fields.map((item, index) => (
-                      <div key={item.id}>
-                        <Controller
-                          render={({ field: { ref, ...field } }) => (
-                            <SelectField
-                              placeholder="Elije una plataforma"
-                              {...field}
-                              options={allowedPlatforms}
-                              errors={errors.links?.[index]?.platform}
-                            />
-                          )}
-                          name={`links.${index}.platform`}
-                          control={control}
-                        />
-                        <Controller
-                          render={({ field: { ref, ...field } }) => (
-                            <InputField
-                              {...field}
-                              errors={errors.links?.[index]?.link}
-                            />
-                          )}
-                          name={`links.${index}.link`}
-                          control={control}
-                        />
-                        <Button
-                          variant="outlined"
-                          sx={{ color: "#633CFF", marginLeft: "10px" }}
-                          onClick={() => remove(index)}
-                        >
-                          delete
-                        </Button>
-                      </div>
-                    ))}
-                  </Stack>
-                  <Box>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      onSubmit={onSubmit}
-                      sx={{
-                        background: "#633CFF",
-                        borderRadius: "8px",
-                        mt: "24px",
-                        width: "100%",
-                      }}
-                    >
-                      Save
-                    </Button>
-                  </Box>
-                </form>
-              </Box>
-            </Stack>
-          
+                    Save
+                  </Button>
+                </Box>
+              </form>
+            </Box>
+          </Stack>
         ) : (
           <NoLinksPage />
         )}

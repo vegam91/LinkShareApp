@@ -45,12 +45,12 @@ const register = async (user) => {
 
 
 const getCurrentUser = () => {
-	const token = localStorage.getItem(tokenKey)
-
-	if (!token) return null
-
-	return jwt_decode(token)
-}
+	try {
+		return jwt_decode(token)
+	} catch (err) {
+		console.error("token en localStorage jwt invalido")
+		return null
+	}}
 
 function getToken() {
 	const token = localStorage.getItem(tokenKey)
