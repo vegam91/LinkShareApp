@@ -9,7 +9,6 @@ import LinksPage from "./pages/LinksPage/LinksPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 // import AddLinksPage from "./pages/LinksPage/ESTANOAddLinksPage";
 
-
 const router = createBrowserRouter([
   {
     element: <AccessLayout />,
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
   {
     element: <AccountLayout />,
     children: [
-     
       {
         path: "/links",
         element: <LinksPage />,

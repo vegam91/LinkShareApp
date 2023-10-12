@@ -82,8 +82,8 @@ function AccessLayout() {
               />
             </svg>
           </Box>
-         
-          <Button
+         <Link to="/links">
+ <Button
          
             variant="outlined"
             sx={{
@@ -108,6 +108,8 @@ function AccessLayout() {
             </svg>
             Links
           </Button>
+         </Link>
+         
           <Link   to="/profile">
           <Button
         

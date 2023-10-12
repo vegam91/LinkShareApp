@@ -17,12 +17,12 @@ import { useState } from "react";
 import _ from "lodash";
 
 import linksService from "../../services/links-services";
-import { useParams } from "react-router-dom";
+
 
 // No uso form reutilizable pero si los campos
 const { input: InputField, select: SelectField } = fieldLib;
 
-function AddLinksPage() {
+function LinksPage() {
   // Traigo el array de links del usuario ({platform, link})
   const { links, loading, setLinks } = useLinks();
 
@@ -92,12 +92,6 @@ function AddLinksPage() {
       linksService.delete(deletedLink._id)
     );
   };
-
-  // const onSubmit = (data ) => {
-  //   links
-  //   console.log("DASDSADDSA", data);
-
-  // AQUI LA LOGICA QUE ACTUALZIA LOS CAMBIOS RECIBIDOS EN LA BASE DE DATOS
 
   return (
     <Stack spacing="40px">
@@ -214,4 +208,4 @@ function AddLinksPage() {
   );
 }
 
-export default AddLinksPage;
+export default LinksPage;
