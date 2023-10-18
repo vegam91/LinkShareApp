@@ -2,15 +2,31 @@ const bcrypt = require("bcrypt");
 const User = require("../models/users");
 
 const register = async (req, res) => {
-  const { password: plainTextPassword, ...userDetails } = req.body;
+  const { email, password: plainTextPassword, ...userDetails } = req.body;
+
+  if (!email) {
+    return res
+      .status(400)
+      .json({ error: "El campo de correo electrónico es obligatorio." });
+  }
+
   const salt = await bcrypt.genSalt(10);
   const password = await bcrypt.hash(plainTextPassword, salt);
-  const user = await User.create({ ...userDetails, password });
 
-  const token = user.generateJWT();
-  res.setHeader('Access-Control-Expose-Headers', 'x-auth-token')
-  res.setHeader("x-auth-token", token);
-  res.send("Usuario registrado");
+  try {
+    const user = await User.create({ email, password, ...userDetails });
+
+    const token = user.generateJWT();
+
+    res.setHeader("Access-Control-Expose-Headers", "x-auth-token");
+    res.setHeader("x-auth-token", token);
+
+    res.status(201).json({ message: "Usuario registrado exitosamente." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error en el servidor al registrar el usuario." });
+  }
 };
 
 const login = async (req, res) => {
