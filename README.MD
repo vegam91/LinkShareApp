@@ -24,18 +24,18 @@ LinkShare is a full-stack web application built using the MERN (MongoDB, Express
 
 ```bash
 git clone https://github.com/yourusername/linkshare.git
-cd linkshare
+cd LINKSHAREAPP
 ```
 
 2. Install the dependencies for both the client and server:
 
 ```bash
 # Install server dependencies
-cd server
+cd API
 npm install
 
 # Install client dependencies
-cd ../client
+cd ../FRONT/vite-project
 npm install
 ```
 
