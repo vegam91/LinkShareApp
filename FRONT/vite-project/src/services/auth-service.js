@@ -33,14 +33,14 @@ const loginWithToken = async (token) => {
 }
 
 const register = async (user) => {
-	try {
+	try { 
 	  const endpoint = getEndpoint('/signup');
-	  console.log(endpoint);
+	 console.log("AQUI",endpoint);
   
 	  const response = await apiClient.post(endpoint, user);
-  
+  console.log("resppuesta",response)
 	  const token = response.headers['x-auth-token'];
-  
+  console.log("esto",token)
 	  return token;
 	} catch (error) {
 	  console.error("Error en la solicitud POST:", error);

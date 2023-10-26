@@ -5,6 +5,8 @@ import { useAuth } from "../../hooks/auth";
 import authService from "../../services/auth-service"
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+
 function RegistroPage() {
   const navigate = useNavigate();
 
@@ -12,8 +14,9 @@ function RegistroPage() {
 
   const onSubmit = async (data) => {
     console.log("DATOS", data);
-    try {
+    try { 
       const token = await authService.register(data);
+     console.log("ESSTO", data)
       const user = await authService.loginWithToken(token);
 
       let action = { type: "login" };

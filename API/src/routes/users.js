@@ -15,7 +15,7 @@ const updatedValidation = [
 
   body("image").custom((value, { req }) => {
     if (!req.file) {
-      return true; 
+      return true;
     }
 
     const allowedFormats = ["image/jpeg", "image/png"];
@@ -89,8 +89,6 @@ router.put(
   UserControllers.updateProfile
 );
 
-router.get("/profile", 
-isAuth, 
-UserControllers.getProfile);
+router.get("/profile", isAuth, UserControllers.getProfile);
 
 module.exports = router;
